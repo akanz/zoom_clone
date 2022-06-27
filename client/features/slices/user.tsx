@@ -8,6 +8,11 @@ interface UserState {
   name: string;
   meetingLoading: boolean;
   connectWithAudio: boolean;
+  participants: Array<any>;
+  messages: Array<any>;
+  activeConversation: any;
+  directChatHistory: Array<any>;
+  socketId: any;
 }
 
 const initialState: UserState = {
@@ -16,6 +21,11 @@ const initialState: UserState = {
   name: "",
   meetingLoading: true,
   connectWithAudio: false,
+  participants: [],
+  messages: [],
+  activeConversation: null,
+  directChatHistory: [],
+  socketId: null,
 };
 
 export const userSlice = createSlice({
@@ -29,17 +39,32 @@ export const userSlice = createSlice({
     connectWithAudio: (state, action: PayloadAction<boolean>) => {
       state.connectWithAudio = action.payload;
     },
-    SetMeetingInfo: (state, action: PayloadAction<MDProps>) => {
-      state.name = action.payload.name;
-      state.RoomId = action.payload.RoomId;
+    SetMeetingInfo: (state, action: PayloadAction<string>) => {
+      state.RoomId = action.payload;
+    },
+    SetParticipantName: (state, action: PayloadAction<string>) => {
+      state.name = action.payload;
     },
     setMeetingRoom: (state, action: PayloadAction<boolean>) => {
       state.meetingLoading = action.payload;
     },
+    setParticipants: (state, action: PayloadAction<Array<any>>) => {
+      state.participants = action.payload;
+    },
+    SetMessages: (state, action: PayloadAction<any>) => {
+      state.messages = [...state.messages, action.payload];
+    },
   },
 });
 
-export const { checkHost, connectWithAudio, SetMeetingInfo, setMeetingRoom } =
-  userSlice.actions;
+export const {
+  checkHost,
+  connectWithAudio,
+  SetMeetingInfo,
+  setMeetingRoom,
+  SetParticipantName,
+  setParticipants,
+  SetMessages,
+} = userSlice.actions;
 
 export default userSlice.reducer;

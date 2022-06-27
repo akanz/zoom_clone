@@ -7,13 +7,16 @@ import { checkHost } from "../features/slices/user";
 import { connectWithIOserver } from "../utils/wss";
 
 function MyApp({ Component, pageProps }: AppProps) {
+
   useEffect(() => {
     connectWithIOserver();
+    
   }, []);
 
   return (
     <Provider store={store}>
       <Component {...pageProps} />
+     
     </Provider>
   );
 }

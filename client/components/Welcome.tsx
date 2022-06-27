@@ -2,8 +2,8 @@ import { useRouter } from "next/router";
 import React from "react";
 import { checkHost } from "../features/slices/user";
 import { useAppDispatch } from "../hooks/redux";
-import Button from "./Button";
-import WelcomeLayout from "./WelcomeLayout";
+import Button from "./partials/Button";
+import WelcomeLayout from "./partials/WelcomeLayout";
 
 const Welcome = () => {
   const dispatch = useAppDispatch();
